@@ -27,7 +27,7 @@
             <a href="/admin/dashboard"
                class="block px-4 py-3 rounded-xl hover:bg-slate-800 transition">
 
-                Dashboard
+                Panel de Control
 
             </a>
 
