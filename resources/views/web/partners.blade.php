@@ -39,7 +39,7 @@
                 <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-slate-200">
 
                     {{-- IMAGE --}}
-                    <div class="h-56 bg-gradient-to-br from-orange-400 to-red-500 relative">
+                    <div class="h-56 bg-linear-to-br from-orange-400 to-red-500 relative">
 
                         @if($tenant->logo)
 

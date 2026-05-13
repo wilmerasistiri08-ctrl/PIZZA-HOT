@@ -24,25 +24,45 @@ use App\Http\Controllers\Admin\OrderController;
 
 /*
 |--------------------------------------------------------------------------
-| LANDING / EMBUDO DE VENTAS
+| LANDING PAGE / EMBUDO DE VENTAS
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
-Route::get('/partners', [HomeController::class, 'partners'])->name('partners');
-
-Route::get('/register', [HomeController::class, 'register'])->name('register');
-
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home');
 
 /*
 |--------------------------------------------------------------------------
-| CHECKOUT (ENVÍA A WHATSAPP)
+| PARTNERS
 |--------------------------------------------------------------------------
 */
 
-Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+Route::get('/partners', [HomeController::class, 'partners'])
+    ->name('partners');
 
+/*
+|--------------------------------------------------------------------------
+| REGISTRO DE NEGOCIOS
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/register', [HomeController::class, 'register'])
+    ->name('register');
+
+/*
+|--------------------------------------------------------------------------
+| CHECKOUT
+|--------------------------------------------------------------------------
+| GET  -> mostrar formulario
+| POST -> procesar pedido
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/checkout', [CartController::class, 'checkoutPage'])
+    ->name('checkout.page');
+
+Route::post('/checkout', [CartController::class, 'checkout'])
+    ->name('checkout');
 
 /*
 |--------------------------------------------------------------------------
@@ -52,24 +72,42 @@ Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
 
 Route::prefix('admin')->group(function () {
 
-    // Dashboard
+    /*
+    |--------------------------------------------------------------------------
+    | DASHBOARD
+    |--------------------------------------------------------------------------
+    */
+
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('admin.dashboard');
 
-    // CRUD productos
+    /*
+    |--------------------------------------------------------------------------
+    | PRODUCTOS
+    |--------------------------------------------------------------------------
+    */
+
     Route::resource('/products', ProductController::class);
 
-    // Pedidos
+    /*
+    |--------------------------------------------------------------------------
+    | PEDIDOS
+    |--------------------------------------------------------------------------
+    */
+
     Route::get('/orders', [OrderController::class, 'index'])
         ->name('admin.orders');
 });
 
-
 /*
 |--------------------------------------------------------------------------
-| TIENDA (MULTI-TENANT)
+| MULTI-TENANT STORE
 |--------------------------------------------------------------------------
 | ⚠️ SIEMPRE AL FINAL
+|--------------------------------------------------------------------------
+| IMPORTANTE:
+| /{slug} puede capturar TODAS las rutas dinámicas
+| por eso debe ir al final.
 |--------------------------------------------------------------------------
 */
 
@@ -77,5 +115,4 @@ Route::middleware('tenant')->group(function () {
 
     Route::get('/{slug}', [TenantController::class, 'show'])
         ->name('tenant.show');
-
 });
