@@ -3,7 +3,7 @@
 @section('content')
 
 {{-- HERO SECTION --}}
-<section class="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white">
+<section class="relative overflow-hidden bg-linear-to-r from-slate-950 via-slate-900 to-black text-white">
 
     {{-- EFECTOS BACKGROUND --}}
     <div class="absolute top-0 left-0 w-72 h-72 bg-orange-500/20 rounded-full blur-3xl"></div>
@@ -197,7 +197,7 @@
                 {{-- IMAGEN --}}
                 <img
                     src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop"
-                    class="w-full h-[500px] object-cover">
+                    class="w-full h-125 object-cover">
 
                 {{-- FOOTER CARD --}}
                 <div class="p-6">
@@ -269,7 +269,7 @@
         <div class="grid md:grid-cols-3 gap-8">
 
             {{-- CARD --}}
-            <div class="bg-slate-50 rounded-[32px] p-8 border border-slate-100 hover:shadow-2xl transition duration-300">
+            <div class="bg-slate-50 rounded-4xl p-8 border border-slate-100 hover:shadow-2xl transition duration-300">
 
                 <div class="w-20 h-20 bg-orange-100 rounded-3xl flex items-center justify-center text-4xl mb-8">
                     📲
@@ -288,7 +288,7 @@
             </div>
 
             {{-- CARD --}}
-            <div class="bg-slate-50 rounded-[32px] p-8 border border-slate-100 hover:shadow-2xl transition duration-300">
+            <div class="bg-slate-50 rounded-4xl p-8 border border-slate-100 hover:shadow-2xl transition duration-300">
 
                 <div class="w-20 h-20 bg-green-100 rounded-3xl flex items-center justify-center text-4xl mb-8">
                     🎨
@@ -307,7 +307,7 @@
             </div>
 
             {{-- CARD --}}
-            <div class="bg-slate-50 rounded-[32px] p-8 border border-slate-100 hover:shadow-2xl transition duration-300">
+            <div class="bg-slate-50 rounded-4xl p-8 border border-slate-100 hover:shadow-2xl transition duration-300">
 
                 <div class="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center text-4xl mb-8">
                     💰
@@ -356,7 +356,7 @@
 
             @for($i = 1; $i <= 4; $i++)
 
-                <div class="bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-2xl transition duration-300">
+                <div class="bg-white rounded-4xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300">
 
                     <img
                         src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1200&auto=format&fit=crop"
@@ -387,7 +387,7 @@
 {{-- CTA FINAL --}}
 <section id="demo" class="py-28 bg-black text-white relative overflow-hidden">
 
-    <div class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-green-500/10"></div>
+    <div class="absolute inset-0 bg-linear-to-r from-orange-500/20 to-green-500/10"></div>
 
     <div class="relative max-w-5xl mx-auto px-6 text-center">
 

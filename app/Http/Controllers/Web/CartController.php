@@ -7,22 +7,25 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    /**
+     * Mostrar página checkout
+     */
+    public function checkoutPage()
+    {
+        return view('tenant.checkout');
+    }
+
+    /**
+     * Procesar checkout
+     */
     public function checkout(Request $request)
     {
-        $tenant = app('tenant');
+        $request->validate([
+            'customer_name' => 'required',
+            'customer_phone' => 'required',
+            'address' => 'required',
+        ]);
 
-        $text = "🧾 *Pedido*\n\n";
-
-        foreach ($request->cart as $item) {
-            $text .= "- {$item['name']} x{$item['qty']}\n";
-        }
-
-        $text .= "\n👤 {$request->name}";
-        $text .= "\n📍 {$request->address}";
-        $text .= "\n🗺️ {$request->maps}";
-
-        $url = "https://wa.me/591{$tenant->whatsapp_number}?text=" . urlencode($text);
-
-        return redirect($url);
+        return back()->with('success', 'Pedido enviado correctamente');
     }
 }
