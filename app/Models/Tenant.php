@@ -7,13 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 class Tenant extends Model
 {
     protected $fillable = [
+
         'user_id',
+
         'name',
+
         'slug',
+
         'logo',
+
         'whatsapp_number',
-        'is_open',
-        'schedule'
+
+        'schedule',
+
+        'address',
+
+        'google_maps',
+
+        'tiktok',
+
+        'is_open'
+
     ];
 
     /*

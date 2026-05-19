@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -17,7 +18,12 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::latest()->get();
+        $tenant = Auth::user()->tenant;
+
+        $products = Product::where('tenant_id', $tenant->id)
+            ->with('category')
+            ->latest()
+            ->get();
 
         return view('admin.products.index', compact('products'));
     }
@@ -30,7 +36,11 @@ class ProductController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
+        $tenant = Auth::user()->tenant;
+
+        $categories = Category::where('tenant_id', $tenant->id)
+            ->latest()
+            ->get();
 
         return view('admin.products.create', compact('categories'));
     }
@@ -43,20 +53,43 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $tenant = Auth::user()->tenant;
+
         $request->validate([
-            'tenant_id' => 'required',
-            'category_id' => 'required',
-            'name' => 'required',
-            'price' => 'required|numeric',
+            'category_id' => 'required|exists:categories,id',
+            'name' => 'required|max:255',
+            'price' => 'required|numeric|min:0',
+            'description' => 'nullable',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
+        /*
+        |--------------------------------------------------------------------------
+        | Guardar imagen
+        |--------------------------------------------------------------------------
+        */
+
+        $imagePath = null;
+
+        if ($request->hasFile('image')) {
+
+            $imagePath = $request->file('image')
+                ->store('products', 'public');
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Crear producto
+        |--------------------------------------------------------------------------
+        */
+
         Product::create([
-            'tenant_id' => $request->tenant_id,
+            'tenant_id' => $tenant->id,
             'category_id' => $request->category_id,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'image' => $request->image,
+            'image' => $imagePath,
             'is_available' => true,
         ]);
 
@@ -73,6 +106,8 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        $this->authorizeProduct($product);
+
         return view('admin.products.show', compact('product'));
     }
 
@@ -84,7 +119,13 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $categories = Category::all();
+        $this->authorizeProduct($product);
+
+        $tenant = Auth::user()->tenant;
+
+        $categories = Category::where('tenant_id', $tenant->id)
+            ->latest()
+            ->get();
 
         return view('admin.products.edit', compact(
             'product',
@@ -100,23 +141,48 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        $this->authorizeProduct($product);
+
         $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric',
+            'category_id' => 'required|exists:categories,id',
+            'name' => 'required|max:255',
+            'price' => 'required|numeric|min:0',
+            'description' => 'nullable',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Actualizar imagen
+        |--------------------------------------------------------------------------
+        */
+
+        $imagePath = $product->image;
+
+        if ($request->hasFile('image')) {
+
+            $imagePath = $request->file('image')
+                ->store('products', 'public');
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Actualizar producto
+        |--------------------------------------------------------------------------
+        */
 
         $product->update([
             'category_id' => $request->category_id,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'image' => $request->image,
+            'image' => $imagePath,
             'is_available' => $request->has('is_available'),
         ]);
 
         return redirect()
             ->route('products.index')
-            ->with('success', 'Producto actualizado');
+            ->with('success', 'Producto actualizado correctamente');
     }
 
     /*
@@ -127,10 +193,27 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        $this->authorizeProduct($product);
+
         $product->delete();
 
         return redirect()
             ->route('products.index')
-            ->with('success', 'Producto eliminado');
+            ->with('success', 'Producto eliminado correctamente');
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | VALIDAR PROPIEDAD DEL PRODUCTO
+    |--------------------------------------------------------------------------
+    */
+
+    private function authorizeProduct(Product $product)
+    {
+        $tenant = Auth::user()->tenant;
+
+        if ($product->tenant_id !== $tenant->id) {
+            abort(403);
+        }
     }
 }

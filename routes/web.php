@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\TenantController;
 use App\Http\Controllers\Web\CartController;
+use App\Http\Controllers\Web\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,16 +45,22 @@ Route::get('/partners', [HomeController::class, 'partners'])
 |--------------------------------------------------------------------------
 | REGISTRO DE NEGOCIOS
 |--------------------------------------------------------------------------
+| GET  -> formulario
+| POST -> guardar negocio
+|--------------------------------------------------------------------------
 */
 
 Route::get('/register', [HomeController::class, 'register'])
     ->name('register');
 
+Route::post('/register-business', [RegisterController::class, 'store'])
+    ->name('register.business');
+
 /*
 |--------------------------------------------------------------------------
 | CHECKOUT
 |--------------------------------------------------------------------------
-| GET  -> mostrar formulario
+| GET  -> mostrar formulario checkout
 | POST -> procesar pedido
 |--------------------------------------------------------------------------
 */
@@ -106,8 +113,8 @@ Route::prefix('admin')->group(function () {
 | ⚠️ SIEMPRE AL FINAL
 |--------------------------------------------------------------------------
 | IMPORTANTE:
-| /{slug} puede capturar TODAS las rutas dinámicas
-| por eso debe ir al final.
+| /{slug} puede capturar TODAS las rutas dinámicas.
+| Por eso SIEMPRE debe ir al final.
 |--------------------------------------------------------------------------
 */
 
@@ -115,4 +122,5 @@ Route::middleware('tenant')->group(function () {
 
     Route::get('/{slug}', [TenantController::class, 'show'])
         ->name('tenant.show');
+
 });

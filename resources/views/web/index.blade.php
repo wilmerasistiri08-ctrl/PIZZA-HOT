@@ -2,471 +2,284 @@
 
 @section('content')
 
-{{-- HERO SECTION --}}
-<section class="relative overflow-hidden bg-linear-to-r from-slate-950 via-slate-900 to-black text-white">
+{{-- =========================================================
+NAVBAR
+========================================================= --}}
 
-    {{-- EFECTOS BACKGROUND --}}
-    <div class="absolute top-0 left-0 w-72 h-72 bg-orange-500/20 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-96 h-96 bg-green-500/10 rounded-full blur-3xl"></div>
+<header class="sticky top-0 z-50 border-b border-white/10 glass">
 
-    {{-- NAVBAR --}}
-    <nav class="relative z-20 max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-6 py-5">
 
-        {{-- LOGO --}}
-        <a href="/"
-           class="flex items-center gap-3">
+        <div class="flex items-center justify-between">
 
-            <div class="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center text-2xl shadow-lg">
-                🍔
-            </div>
+            {{-- LOGO --}}
+            <div class="flex items-center gap-4">
 
-            <div>
+                <div class="w-14 h-14 rounded-3xl bg-orange-500
+                            flex items-center justify-center
+                            text-2xl glow-orange">
 
-                <div class="text-2xl font-extrabold tracking-tight">
-                    FoodLink
+                    🛍️
+
                 </div>
 
-                <div class="text-xs text-slate-400">
-                    Marketplace Food Delivery
+                <div>
+
+                    <h1 class="text-2xl font-black text-white">
+                        FoodLink
+                    </h1>
+
+                    <p class="text-slate-400 text-sm">
+                        Marketplace Commerce
+                    </p>
+
                 </div>
 
             </div>
 
-        </a>
+            {{-- MENU --}}
+            <nav class="hidden lg:flex items-center gap-10">
 
-        {{-- MENU --}}
-        <div class="hidden lg:flex items-center gap-8 text-sm font-medium">
+                <a href="#benefits"
+                   class="text-slate-300 hover:text-orange-400 transition">
 
-            <a href="#beneficios"
-               class="hover:text-orange-400 transition">
-                Beneficios
-            </a>
+                    Beneficios
 
-            <a href="#partners"
-               class="hover:text-orange-400 transition">
-                Partners
-            </a>
+                </a>
 
-            <a href="#demo"
-               class="hover:text-orange-400 transition">
-                Demo
-            </a>
+                <a href="#categories"
+                   class="text-slate-300 hover:text-orange-400 transition">
 
+                    Categorías
+
+                </a>
+
+                <a href="#partners"
+                   class="text-slate-300 hover:text-orange-400 transition">
+
+                    Partners
+
+                </a>
+
+            </nav>
+
+            {{-- CTA --}}
             <a href="/register"
-               class="bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-2xl font-bold shadow-xl">
+               class="btn-premium bg-orange-500
+                      hover:bg-orange-600
+                      px-8 py-4 rounded-2xl
+                      font-bold text-white glow-orange">
+
                 Registrar negocio
+
             </a>
 
         </div>
 
-    </nav>
-
-    {{-- HERO --}}
-    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-28 grid lg:grid-cols-2 gap-16 items-center">
-
-        {{-- TEXTO --}}
-        <div>
-
-            {{-- BADGE --}}
-            <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/10 rounded-full px-5 py-3 mb-8">
-
-                <span class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></span>
-
-                <span class="text-sm font-medium text-slate-200">
-                    Convierte visitas de TikTok en pedidos reales
-                </span>
-
-            </div>
-
-            {{-- TITULO --}}
-            <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-8 tracking-tight">
-
-                Lleva tu menú de TikTok al carrito de compras en un clic
-
-            </h1>
-
-            {{-- DESCRIPCION --}}
-            <p class="text-slate-300 text-xl leading-relaxed mb-10 max-w-2xl">
-
-                Crea una experiencia moderna tipo Uber Eats para tu negocio y recibe pedidos automáticos por WhatsApp con un catálogo optimizado para móviles.
-
-            </p>
-
-            {{-- BOTONES --}}
-            <div class="flex flex-wrap gap-5 mb-10">
-
-                <a href="/register"
-                   class="bg-orange-500 hover:bg-orange-600 transition px-8 py-5 rounded-2xl font-bold text-lg shadow-2xl hover:scale-105 duration-300">
-
-                    🚀 Registrar mi negocio
-
-                </a>
-
-                <a href="#demo"
-                   class="bg-white/10 hover:bg-white/20 transition border border-white/10 backdrop-blur-md px-8 py-5 rounded-2xl font-bold text-lg">
-
-                    ▶ Solicitar demo
-
-                </a>
-
-            </div>
-
-            {{-- FEATURES --}}
-            <div class="grid sm:grid-cols-3 gap-5 text-sm">
-
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-md">
-
-                    <div class="text-3xl mb-3">
-                        📲
-                    </div>
-
-                    <div class="font-semibold">
-                        WhatsApp Automático
-                    </div>
-
-                </div>
-
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-md">
-
-                    <div class="text-3xl mb-3">
-                        ⚡
-                    </div>
-
-                    <div class="font-semibold">
-                        Checkout Rápido
-                    </div>
-
-                </div>
-
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-md">
-
-                    <div class="text-3xl mb-3">
-                        💰
-                    </div>
-
-                    <div class="font-semibold">
-                        Sin Comisiones
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        {{-- MOCKUP --}}
-        <div class="relative">
-
-            {{-- EFECTOS --}}
-            <div class="absolute -top-10 -left-10 w-40 h-40 bg-orange-500 rounded-full blur-3xl opacity-30"></div>
-
-            <div class="absolute bottom-0 right-0 w-56 h-56 bg-green-500 rounded-full blur-3xl opacity-20"></div>
-
-            {{-- CARD PRINCIPAL --}}
-            <div class="relative bg-white rounded-[40px] overflow-hidden shadow-2xl border border-white/10">
-
-                {{-- HEADER APP --}}
-                <div class="bg-black text-white p-5 flex items-center justify-between">
-
-                    <div class="flex items-center gap-3">
-
-                        <div class="w-12 h-12 bg-orange-500 rounded-2xl flex items-center justify-center text-xl">
-                            🍔
-                        </div>
-
-                        <div>
-
-                            <div class="font-bold text-lg">
-                                Hamburguesas Pro
-                            </div>
-
-                            <div class="text-sm text-green-400">
-                                ● Abierto ahora
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="text-sm bg-white/10 px-4 py-2 rounded-full">
-                        Delivery
-                    </div>
-
-                </div>
-
-                {{-- IMAGEN --}}
-                <img
-                    src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop"
-                    class="w-full h-125 object-cover">
-
-                {{-- FOOTER CARD --}}
-                <div class="p-6">
-
-                    <div class="flex items-center justify-between mb-4">
-
-                        <div>
-
-                            <div class="text-2xl font-extrabold text-slate-900">
-                                Hamburguesa Clásica
-                            </div>
-
-                            <div class="text-slate-500">
-                                Carne premium + papas
-                            </div>
-
-                        </div>
-
-                        <div class="text-orange-500 text-3xl font-extrabold">
-                            Bs 25
-                        </div>
-
-                    </div>
-
-                    <button
-                        class="w-full bg-black hover:bg-orange-500 transition text-white py-5 rounded-2xl font-bold text-lg">
-
-                        + Agregar al carrito
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
     </div>
 
-</section>
+</header>
 
-{{-- BENEFICIOS --}}
-<section id="beneficios" class="py-28 bg-white">
+{{-- =========================================================
+HERO
+========================================================= --}}
 
-    <div class="max-w-7xl mx-auto px-6">
+<section class="relative overflow-hidden">
 
-        {{-- TITULO --}}
-        <div class="text-center mb-20">
+    <div class="max-w-7xl mx-auto px-6 py-24">
 
-            <div class="text-orange-500 font-bold uppercase tracking-widest mb-4">
-                Beneficios
-            </div>
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
 
-            <h2 class="text-5xl font-extrabold text-slate-900 mb-6">
+            {{-- LEFT --}}
+            <div class="reveal">
 
-                Diseñado para aumentar ventas
+                <div class="inline-flex items-center gap-3
+                            glass px-5 py-3 rounded-full">
 
-            </h2>
+                    <div class="w-3 h-3 rounded-full
+                                bg-emerald-400 animate-pulse">
+                    </div>
 
-            <p class="text-slate-500 text-xl max-w-3xl mx-auto leading-relaxed">
+                    <span class="text-slate-300 font-medium">
 
-                Todo optimizado para convertir tráfico de TikTok, Instagram y Facebook en pedidos reales.
+                        Plataforma moderna para negocios
 
-            </p>
+                    </span>
 
-        </div>
-
-        {{-- GRID --}}
-        <div class="grid md:grid-cols-3 gap-8">
-
-            {{-- CARD --}}
-            <div class="bg-slate-50 rounded-4xl p-8 border border-slate-100 hover:shadow-2xl transition duration-300">
-
-                <div class="w-20 h-20 bg-orange-100 rounded-3xl flex items-center justify-center text-4xl mb-8">
-                    📲
                 </div>
 
-                <h3 class="text-3xl font-extrabold text-slate-900 mb-5">
-                    WhatsApp Ordenado
-                </h3>
+                <h1 class="hero-title mt-10
+                           text-6xl lg:text-8xl
+                           font-black tracking-tight">
 
-                <p class="text-slate-500 text-lg leading-relaxed">
+                    Convierte
 
-                    Recibe pedidos estructurados automáticamente con dirección, productos y total.
+                    <span class="text-orange-400">
+                        TikTok
+                    </span>,
+
+                    Instagram y
+
+                    <span class="text-pink-400">
+                        WhatsApp
+                    </span>
+
+                    en ventas reales
+
+                </h1>
+
+                <p class="mt-8 text-xl text-slate-300 leading-relaxed max-w-2xl">
+
+                    Diseñado para restaurantes, ropa, cosméticos,
+                    tecnología, snacks y cualquier negocio moderno
+                    que venda por redes sociales.
 
                 </p>
 
-            </div>
+                <div class="flex flex-wrap gap-5 mt-12">
 
-            {{-- CARD --}}
-            <div class="bg-slate-50 rounded-4xl p-8 border border-slate-100 hover:shadow-2xl transition duration-300">
+                    <a href="/register"
+                       class="btn-premium bg-orange-500
+                              hover:bg-orange-600
+                              px-10 py-5 rounded-2xl
+                              text-lg font-bold text-white glow-orange">
 
-                <div class="w-20 h-20 bg-green-100 rounded-3xl flex items-center justify-center text-4xl mb-8">
-                    🎨
+                        Comenzar ahora
+
+                    </a>
+
+                    <a href="#benefits"
+                       class="glass px-10 py-5 rounded-2xl
+                              text-lg font-semibold text-white">
+
+                        Ver beneficios
+
+                    </a>
+
                 </div>
 
-                <h3 class="text-3xl font-extrabold text-slate-900 mb-5">
-                    Marca Personalizada
-                </h3>
-
-                <p class="text-slate-500 text-lg leading-relaxed">
-
-                    Personaliza colores, logo, imágenes y categorías para tu negocio.
-
-                </p>
-
             </div>
 
-            {{-- CARD --}}
-            <div class="bg-slate-50 rounded-4xl p-8 border border-slate-100 hover:shadow-2xl transition duration-300">
+            {{-- RIGHT --}}
+            <div class="relative reveal">
 
-                <div class="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center text-4xl mb-8">
-                    💰
+                {{-- FLOATING CARD --}}
+                <div class="absolute -top-6 -left-6
+                            glass rounded-3xl p-5
+                            animate-floating">
+
+                    <h3 class="text-2xl font-black">
+                        +120 pedidos
+                    </h3>
+
+                    <p class="text-slate-400">
+                        hoy
+                    </p>
+
                 </div>
 
-                <h3 class="text-3xl font-extrabold text-slate-900 mb-5">
-                    Sin Comisiones
-                </h3>
+                {{-- PHONE --}}
+                <div class="mx-auto w-96 rounded-[48px]
+                            border-10 border-slate-800
+                            bg-black overflow-hidden
+                            shadow-[0_0_80px_rgba(249,115,22,.25)]">
 
-                <p class="text-slate-500 text-lg leading-relaxed">
+                    {{-- TOP --}}
+                    <div class="flex items-center
+                                justify-between
+                                p-5 border-b border-white/10">
 
-                    Vende directamente sin perder ganancias en plataformas externas.
+                        <div class="flex items-center gap-3">
 
-                </p>
+                            <div class="w-12 h-12 rounded-2xl
+                                        bg-orange-500
+                                        flex items-center justify-center">
 
-            </div>
+                                🛒
 
-        </div>
+                            </div>
 
-    </div>
+                            <div>
 
-</section>
+                                <h3 class="font-bold">
+                                    Tienda Moderna
+                                </h3>
 
-{{-- PARTNERS --}}
-<section id="partners" class="py-24 bg-slate-100">
+                                <p class="text-emerald-400 text-sm">
 
-    <div class="max-w-7xl mx-auto px-6">
+                                    ● Abierto ahora
 
-        {{-- TITULO --}}
-        <div class="text-center mb-16">
+                                </p>
 
-            <div class="text-orange-500 font-bold uppercase tracking-widest mb-4">
-                Partners
-            </div>
+                            </div>
 
-            <h2 class="text-5xl font-extrabold text-slate-900 mb-6">
+                        </div>
 
-                Negocios que ya usan FoodLink
+                        <div class="glass px-4 py-2 rounded-full text-sm">
 
-            </h2>
+                            Delivery
 
-        </div>
+                        </div>
 
-        {{-- GRID --}}
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    </div>
 
-            @for($i = 1; $i <= 4; $i++)
-
-                <div class="bg-white rounded-4xl overflow-hidden shadow-sm hover:shadow-2xl transition duration-300">
-
+                    {{-- IMAGE --}}
                     <img
-                        src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1200&auto=format&fit=crop"
-                        class="w-full h-52 object-cover">
+                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200"
+                        class="w-full h-80 object-cover"
+                    >
 
-                    <div class="p-6">
+                    {{-- CONTENT --}}
+                    <div class="bg-slate-900 p-6">
 
-                        <div class="text-2xl font-extrabold text-slate-900 mb-2">
-                            Burger House
+                        <div class="flex justify-between items-center">
+
+                            <div>
+
+                                <h2 class="text-2xl font-black">
+
+                                    Producto Premium
+
+                                </h2>
+
+                                <p class="text-slate-400">
+
+                                    Compra rápida desde TikTok
+
+                                </p>
+
+                            </div>
+
+                            <div class="text-orange-400
+                                        text-3xl font-black">
+
+                                Bs 120
+
+                            </div>
+
                         </div>
 
-                        <div class="text-slate-500">
-                            Delivery • Fast Food
-                        </div>
+                        <button class="w-full mt-6
+                                       bg-orange-500
+                                       hover:bg-orange-600
+                                       transition
+                                       py-5 rounded-2xl
+                                       text-lg font-black">
+
+                            + Agregar al carrito
+
+                        </button>
 
                     </div>
 
                 </div>
 
-            @endfor
+            </div>
 
         </div>
 
     </div>
 
 </section>
-
-{{-- CTA FINAL --}}
-<section id="demo" class="py-28 bg-black text-white relative overflow-hidden">
-
-    <div class="absolute inset-0 bg-linear-to-r from-orange-500/20 to-green-500/10"></div>
-
-    <div class="relative max-w-5xl mx-auto px-6 text-center">
-
-        <div class="text-orange-400 font-bold uppercase tracking-widest mb-6">
-            Empieza hoy
-        </div>
-
-        <h2 class="text-5xl lg:text-6xl font-extrabold mb-8 leading-tight">
-
-            Convierte tu negocio en una experiencia moderna de pedidos
-
-        </h2>
-
-        <p class="text-slate-300 text-xl leading-relaxed mb-12 max-w-3xl mx-auto">
-
-            Lleva tráfico de TikTok, Instagram y Facebook directamente a pedidos reales mediante un catálogo interactivo optimizado para móviles.
-
-        </p>
-
-        <div class="flex flex-wrap justify-center gap-5">
-
-            <a href="/register"
-               class="bg-orange-500 hover:bg-orange-600 transition px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl">
-
-                🚀 Registrar mi negocio
-
-            </a>
-
-            <a href="/partners"
-               class="bg-white/10 hover:bg-white/20 transition border border-white/10 px-10 py-5 rounded-2xl font-bold text-xl">
-
-                Ver negocios
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-{{-- FOOTER --}}
-<footer class="bg-slate-950 text-slate-400 py-10 border-t border-white/5">
-
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
-
-        <div>
-
-            <div class="text-white text-2xl font-extrabold mb-2">
-                FoodLink
-            </div>
-
-            <div class="text-sm">
-                Marketplace Food Delivery © {{ date('Y') }}
-            </div>
-
-        </div>
-
-        <div class="flex gap-6 text-sm">
-
-            <a href="#"
-               class="hover:text-white transition">
-                Términos
-            </a>
-
-            <a href="#"
-               class="hover:text-white transition">
-                Privacidad
-            </a>
-
-            <a href="#"
-               class="hover:text-white transition">
-                Contacto
-            </a>
-
-        </div>
-
-    </div>
-
-</footer>
 
 @endsection
