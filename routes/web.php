@@ -25,7 +25,15 @@ use App\Http\Controllers\Admin\OrderController;
 
 /*
 |--------------------------------------------------------------------------
-| LANDING PAGE / EMBUDO DE VENTAS
+| CONTROLADORES AUTH / PERFIL
+|--------------------------------------------------------------------------
+*/
+
+use App\Http\Controllers\ProfileController;
+
+/*
+|--------------------------------------------------------------------------
+| LANDING PAGE
 |--------------------------------------------------------------------------
 */
 
@@ -45,13 +53,14 @@ Route::get('/partners', [HomeController::class, 'partners'])
 |--------------------------------------------------------------------------
 | REGISTRO DE NEGOCIOS
 |--------------------------------------------------------------------------
-| GET  -> formulario
-| POST -> guardar negocio
+| IMPORTANTE:
+| NO usar /register porque Breeze ya usa esa ruta.
+| Por eso usamos /register-business
 |--------------------------------------------------------------------------
 */
 
-Route::get('/register', [HomeController::class, 'register'])
-    ->name('register');
+Route::get('/register-business', [HomeController::class, 'register'])
+    ->name('register.business.form');
 
 Route::post('/register-business', [RegisterController::class, 'store'])
     ->name('register.business');
@@ -59,9 +68,6 @@ Route::post('/register-business', [RegisterController::class, 'store'])
 /*
 |--------------------------------------------------------------------------
 | CHECKOUT
-|--------------------------------------------------------------------------
-| GET  -> mostrar formulario checkout
-| POST -> procesar pedido
 |--------------------------------------------------------------------------
 */
 
@@ -73,48 +79,83 @@ Route::post('/checkout', [CartController::class, 'checkout'])
 
 /*
 |--------------------------------------------------------------------------
-| PANEL ADMIN
+| PERFIL USUARIO
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->group(function () {
+Route::middleware('auth')->group(function () {
 
-    /*
-    |--------------------------------------------------------------------------
-    | DASHBOARD
-    |--------------------------------------------------------------------------
-    */
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->name('admin.dashboard');
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
 
-    /*
-    |--------------------------------------------------------------------------
-    | PRODUCTOS
-    |--------------------------------------------------------------------------
-    */
-
-    Route::resource('/products', ProductController::class);
-
-    /*
-    |--------------------------------------------------------------------------
-    | PEDIDOS
-    |--------------------------------------------------------------------------
-    */
-
-    Route::get('/orders', [OrderController::class, 'index'])
-        ->name('admin.orders');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])
+        ->name('profile.destroy');
 });
 
 /*
 |--------------------------------------------------------------------------
-| MULTI-TENANT STORE
+| PANEL ADMIN
+|--------------------------------------------------------------------------
+| SOLO USUARIOS AUTENTICADOS
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth'])
+    ->prefix('admin')
+    ->group(function () {
+
+        /*
+        |--------------------------------------------------------------------------
+        | DASHBOARD
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('admin.dashboard');
+
+        /*
+        |--------------------------------------------------------------------------
+        | PRODUCTOS
+        |--------------------------------------------------------------------------
+        */
+
+        Route::resource('/products', ProductController::class);
+
+        /*
+        |--------------------------------------------------------------------------
+        | PEDIDOS
+        |--------------------------------------------------------------------------
+        */
+
+        Route::get('/orders', [OrderController::class, 'index'])
+            ->name('admin.orders');
+    });
+
+/*
+|--------------------------------------------------------------------------
+| RUTAS AUTH (LARAVEL BREEZE)
+|--------------------------------------------------------------------------
+| LOGIN
+| LOGOUT
+| REGISTER
+| PASSWORD RESET
+|--------------------------------------------------------------------------
+*/
+
+require __DIR__ . '/auth.php';
+
+/*
+|--------------------------------------------------------------------------
+| MULTI TENANT STORE
 |--------------------------------------------------------------------------
 | ⚠️ SIEMPRE AL FINAL
 |--------------------------------------------------------------------------
 | IMPORTANTE:
-| /{slug} puede capturar TODAS las rutas dinámicas.
-| Por eso SIEMPRE debe ir al final.
+| /{slug} captura cualquier ruta dinámica.
+| Debe ir DESPUÉS de auth.php
 |--------------------------------------------------------------------------
 */
 
@@ -122,5 +163,4 @@ Route::middleware('tenant')->group(function () {
 
     Route::get('/{slug}', [TenantController::class, 'show'])
         ->name('tenant.show');
-
 });

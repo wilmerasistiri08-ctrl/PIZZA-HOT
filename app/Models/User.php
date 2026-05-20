@@ -9,25 +9,25 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
     /*
     |--------------------------------------------------------------------------
-    | MASS ASSIGNABLE
+    | FILLABLE
     |--------------------------------------------------------------------------
     */
 
     protected $fillable = [
-        'tenant_id',
         'name',
         'email',
         'password',
+        'role',
+        'tenant_id',
     ];
 
     /*
     |--------------------------------------------------------------------------
-    | HIDDEN ATTRIBUTES
+    | HIDDEN
     |--------------------------------------------------------------------------
     */
 
@@ -52,15 +52,28 @@ class User extends Authenticatable
 
     /*
     |--------------------------------------------------------------------------
-    | RELATIONSHIPS
+    | RELATIONSHIP
     |--------------------------------------------------------------------------
     */
 
-    /**
-     * Tenant del usuario
-     */
     public function tenant()
     {
         return $this->belongsTo(Tenant::class);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | HELPERS
+    |--------------------------------------------------------------------------
+    */
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isOwner()
+    {
+        return $this->role === 'owner';
     }
 }

@@ -1,31 +1,7 @@
 import './bootstrap';
 
-/*
-|--------------------------------------------------------------------------
-| REVEAL ANIMATION
-|--------------------------------------------------------------------------
-*/
+import Alpine from 'alpinejs';
 
-const reveals = document.querySelectorAll('.reveal');
+window.Alpine = Alpine;
 
-function revealOnScroll() {
-
-    reveals.forEach((element) => {
-
-        const windowHeight = window.innerHeight;
-
-        const top = element.getBoundingClientRect().top;
-
-        if (top < windowHeight - 100) {
-
-            element.classList.add('active');
-
-        }
-
-    });
-
-}
-
-window.addEventListener('scroll', revealOnScroll);
-
-revealOnScroll();
+Alpine.start();

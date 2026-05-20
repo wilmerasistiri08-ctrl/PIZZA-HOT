@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
 
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>FoodLink</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <title>{{ config('app.name', 'FoodLink') }}</title>
+
+    {{-- FONTS --}}
+    <link rel="preconnect" href="https://fonts.bunny.net">
+
+    <link
+        href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800,900&display=swap"
+        rel="stylesheet"
+    />
+
+    {{-- VITE --}}
     @vite([
         'resources/css/app.css',
         'resources/js/app.js'
@@ -16,44 +27,36 @@
 
 </head>
 
-<body class="min-h-screen text-white antialiased">
+<body class="font-sans antialiased bg-[#050816] text-white overflow-x-hidden">
 
-    {{-- BACKGROUND GLOBAL --}}
-    <div class="fixed inset-0 -z-50 overflow-hidden">
+    <div class="min-h-screen">
 
-        {{-- BASE --}}
-        <div class="absolute inset-0 bg-slate-950"></div>
+        {{-- NAVIGATION --}}
+        @include('layouts.navigation')
 
-        {{-- GLOW TOP --}}
-        <div
-            class="absolute top-0 left-0 w-[600px] h-[600px]
-                   bg-orange-500/20 rounded-full blur-3xl">
-        </div>
+        {{-- HEADER --}}
+        @isset($header)
 
-        {{-- GLOW BOTTOM --}}
-        <div
-            class="absolute bottom-0 right-0 w-[500px] h-[500px]
-                   bg-pink-500/20 rounded-full blur-3xl">
-        </div>
+            <header class="bg-white/5 backdrop-blur-xl border-b border-white/10 shadow-lg">
 
-        {{-- GRID --}}
-        <div class="absolute inset-0 opacity-[0.04]"
-             style="
-                background-image:
-                linear-gradient(to right, white 1px, transparent 1px),
-                linear-gradient(to bottom, white 1px, transparent 1px);
-                background-size: 60px 60px;
-             ">
-        </div>
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+
+                    {{ $header }}
+
+                </div>
+
+            </header>
+
+        @endisset
+
+        {{-- CONTENT --}}
+        <main>
+
+            @yield('content')
+
+        </main>
 
     </div>
-
-    {{-- CONTENT --}}
-    <main class="relative z-10">
-
-        @yield('content')
-
-    </main>
 
 </body>
 
