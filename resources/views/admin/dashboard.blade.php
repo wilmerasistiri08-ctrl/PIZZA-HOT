@@ -2,7 +2,32 @@
 
 @section('content')
 
-<div class="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-yellow-50">
+<div class="min-h-screen bg-gradient-to-br from-teal-100 via-cyan-50 to-emerald-100">
+
+    {{-- =========================================================
+    BARRA SUPERIOR HORIZONTAL AGREGADA (ARRIBA DE TODO)
+    ========================================================= --}}
+    <div class="bg-white border-b border-teal-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-3">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl">🍕</span>
+                    <div>
+                        <h1 class="text-lg font-bold text-gray-800">FoodLink</h1>
+                        <p class="text-xs text-gray-400">TikTok Ordering Platform</p>
+                    </div>
+                </div>
+                <nav class="flex flex-wrap items-center gap-4 text-sm">
+                    <a href="#" class="text-gray-600 hover:text-teal-600 transition">Inicio</a>
+                    <a href="#" class="text-gray-600 hover:text-teal-600 transition">Partners</a>
+                    <a href="#" class="text-gray-600 hover:text-teal-600 transition">Registrar negocio</a>
+                    <a href="/admin/dashboard" class="text-teal-600 font-semibold transition">Dashboard</a>
+                    <a href="#" class="text-gray-600 hover:text-teal-600 transition">Salir</a>
+                </nav>
+                <div class="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center text-white text-sm font-bold">A</div>
+            </div>
+        </div>
+    </div>
 
     {{-- SIDEBAR + CONTENIDO --}}
     <div class="flex">
@@ -13,14 +38,11 @@
             {{-- LOGO CON IMAGEN ROTATIVA 3D --}}
             <div class="mb-10 text-center">
 
-                {{-- CONTENEDOR 3D --}}
                 <div class="flex justify-center mb-3">
                     <div class="relative w-28 h-28">
-                        {{-- ANILLO 3D --}}
                         <div class="absolute inset-0 rounded-full border-4 border-yellow-400/50 animate-spin-slow"></div>
                         <div class="absolute inset-2 rounded-full border-2 border-orange-400/30 animate-spin-slow-reverse"></div>
                         
-                        {{-- IMAGEN ROTATIVA 3D --}}
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="text-7xl cursor-pointer transform transition-all duration-300 hover:scale-125" id="rotatingFoodIcon" style="filter: drop-shadow(0 0 15px rgba(255,215,0,0.5));">
                                 🍕
@@ -134,6 +156,15 @@
             {{-- CONTENIDO --}}
             <div class="p-8">
 
+                {{-- SELECTOR DE FECHAS RÁPIDAS --}}
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <button class="px-4 py-2 bg-white border border-orange-300 rounded-xl text-sm font-medium text-gray-700 hover:bg-orange-500 hover:text-white transition">Hoy</button>
+                    <button class="px-4 py-2 bg-white border border-orange-300 rounded-xl text-sm font-medium text-gray-700 hover:bg-orange-500 hover:text-white transition">Esta semana</button>
+                    <button class="px-4 py-2 bg-orange-500 text-white border border-orange-500 rounded-xl text-sm font-medium shadow-md">Este mes</button>
+                    <button class="px-4 py-2 bg-white border border-orange-300 rounded-xl text-sm font-medium text-gray-700 hover:bg-orange-500 hover:text-white transition">Últimos 3 meses</button>
+                    <button class="px-4 py-2 bg-white border border-orange-300 rounded-xl text-sm font-medium text-gray-700 hover:bg-orange-500 hover:text-white transition">Este año</button>
+                </div>
+
                 {{-- CARDS ROJO/NARANJA/AMARILLO --}}
                 <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
 
@@ -239,8 +270,50 @@
 
                 </div>
 
+                {{-- GRÁFICO DE VENTAS --}}
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-orange-200 mb-8">
+                    <div class="p-6 bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 border-b-4 border-orange-400">
+                        <h3 class="text-2xl font-black text-gray-800 flex items-center gap-2">
+                            <span class="text-3xl">📈</span> Ventas de la semana
+                        </h3>
+                        <p class="text-gray-600 text-sm mt-1">Comparativa de ventas de los últimos 7 días</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-end gap-3 h-48">
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-gradient-to-t from-red-500 to-orange-500 rounded-lg" style="height: 120px;"></div>
+                                <span class="text-sm text-gray-600">Lun</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-gradient-to-t from-red-500 to-orange-500 rounded-lg" style="height: 80px;"></div>
+                                <span class="text-sm text-gray-600">Mar</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-gradient-to-t from-red-500 to-orange-500 rounded-lg" style="height: 150px;"></div>
+                                <span class="text-sm text-gray-600">Mié</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-gradient-to-t from-red-500 to-orange-500 rounded-lg" style="height: 200px;"></div>
+                                <span class="text-sm text-gray-600">Jue</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-gradient-to-t from-red-500 to-orange-500 rounded-lg" style="height: 170px;"></div>
+                                <span class="text-sm text-gray-600">Vie</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-gradient-to-t from-red-500 to-orange-500 rounded-lg" style="height: 250px;"></div>
+                                <span class="text-sm text-gray-600">Sáb</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center gap-2">
+                                <div class="w-full bg-gradient-to-t from-red-500 to-orange-500 rounded-lg" style="height: 90px;"></div>
+                                <span class="text-sm text-gray-600">Dom</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {{-- TABLA DE PEDIDOS --}}
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-orange-200">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-orange-200 mb-8">
 
                     {{-- HEADER TABLA --}}
                     <div class="flex items-center justify-between p-6 bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 border-b-4 border-orange-400">
@@ -325,7 +398,7 @@
                                             🔥 Extra queso
                                         </div>
 
-                                    </td>
+                                    </tr>
 
                                     <td class="px-6 py-5 font-black text-red-600 text-xl">
 
@@ -445,6 +518,128 @@
 
                 </div>
 
+                {{-- PRODUCTOS MÁS VENDIDOS Y TOP CLIENTES --}}
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    
+                    {{-- PRODUCTOS MÁS VENDIDOS --}}
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-orange-200">
+                        <div class="p-5 bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 border-b-4 border-orange-400">
+                            <h3 class="text-xl font-black text-gray-800 flex items-center gap-2">
+                                <span class="text-2xl">🔥</span> Productos más vendidos
+                            </h3>
+                        </div>
+                        <div class="divide-y divide-gray-100">
+                            <div class="p-4 flex items-center justify-between hover:bg-orange-50 transition">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-2xl">🍔</span>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Hamburguesa Clásica</p>
+                                        <p class="text-xs text-gray-400">245 unidades</p>
+                                    </div>
+                                </div>
+                                <span class="text-lg font-bold text-red-600">Bs 11,025</span>
+                            </div>
+                            <div class="p-4 flex items-center justify-between hover:bg-orange-50 transition">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-2xl">🍕</span>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Pizza Pepperoni</p>
+                                        <p class="text-xs text-gray-400">189 unidades</p>
+                                    </div>
+                                </div>
+                                <span class="text-lg font-bold text-red-600">Bs 16,065</span>
+                            </div>
+                            <div class="p-4 flex items-center justify-between hover:bg-orange-50 transition">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-2xl">🌮</span>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Tacos al Pastor</p>
+                                        <p class="text-xs text-gray-400">156 unidades</p>
+                                    </div>
+                                </div>
+                                <span class="text-lg font-bold text-red-600">Bs 7,020</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- TOP CLIENTES --}}
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-orange-200">
+                        <div class="p-5 bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 border-b-4 border-orange-400">
+                            <h3 class="text-xl font-black text-gray-800 flex items-center gap-2">
+                                <span class="text-2xl">👑</span> Top Clientes
+                            </h3>
+                        </div>
+                        <div class="divide-y divide-gray-100">
+                            <div class="p-4 flex items-center justify-between hover:bg-orange-50 transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold">1</div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Juan Pérez</p>
+                                        <p class="text-xs text-gray-400">12 pedidos</p>
+                                    </div>
+                                </div>
+                                <span class="text-lg font-bold text-red-600">Bs 1,250</span>
+                            </div>
+                            <div class="p-4 flex items-center justify-between hover:bg-orange-50 transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-500 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">María López</p>
+                                        <p class="text-xs text-gray-400">9 pedidos</p>
+                                    </div>
+                                </div>
+                                <span class="text-lg font-bold text-red-600">Bs 980</span>
+                            </div>
+                            <div class="p-4 flex items-center justify-between hover:bg-orange-50 transition">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gradient-to-br from-amber-600 to-amber-700 rounded-full flex items-center justify-center text-white font-bold">3</div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Carlos Rodríguez</p>
+                                        <p class="text-xs text-gray-400">7 pedidos</p>
+                                    </div>
+                                </div>
+                                <span class="text-lg font-bold text-red-600">Bs 670</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- NOTIFICACIONES RECIENTES --}}
+                <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-5 border border-orange-200 mb-8">
+                    <div class="flex items-center justify-between flex-wrap gap-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white text-xl animate-pulse">🔔</div>
+                            <div>
+                                <p class="font-bold text-gray-800">¡Nuevo pedido!</p>
+                                <p class="text-sm text-gray-500">Juan Pérez acaba de realizar un pedido</p>
+                            </div>
+                        </div>
+                        <span class="text-xs text-gray-400">Hace 2 minutos</span>
+                    </div>
+                    <div class="border-t border-orange-200 my-3"></div>
+                    <div class="flex items-center justify-between flex-wrap gap-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white text-xl">✅</div>
+                            <div>
+                                <p class="font-bold text-gray-800">Pedido entregado</p>
+                                <p class="text-sm text-gray-500">Pedido #128 entregado con éxito</p>
+                            </div>
+                        </div>
+                        <span class="text-xs text-gray-400">Hace 15 minutos</span>
+                    </div>
+                    <div class="border-t border-orange-200 my-3"></div>
+                    <div class="flex items-center justify-between flex-wrap gap-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white text-xl">⭐</div>
+                            <div>
+                                <p class="font-bold text-gray-800">Nueva reseña</p>
+                                <p class="text-sm text-gray-500">⭐⭐⭐⭐⭐ "Excelente servicio"</p>
+                            </div>
+                        </div>
+                        <span class="text-xs text-gray-400">Hace 1 hora</span>
+                    </div>
+                </div>
+
                 {{-- BANNER PROMOCIONAL --}}
                 <div class="mt-8 bg-gradient-to-r from-red-600 via-orange-500 to-yellow-500 rounded-2xl p-6 shadow-xl">
 
@@ -488,6 +683,13 @@
 
 </div>
 
+{{-- BOTÓN FLOTANTE DE AYUDA --}}
+<div class="fixed bottom-6 right-6 z-50">
+    <button class="w-14 h-14 bg-gradient-to-r from-red-500 to-orange-500 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center text-white text-2xl animate-bounce">
+        💬
+    </button>
+</div>
+
 {{-- SCRIPT PARA EFECTO 3D CIRCULAR --}}
 <script>
     const foodItems = ['🍕', '🍜', '🍟', '🍔'];
@@ -497,7 +699,6 @@
     function rotateFoodIcon3D() {
         currentIndex = (currentIndex + 1) % foodItems.length;
         
-        // Efecto 3D circular - Rotación completa en 3D
         iconElement.style.transform = 'rotateY(180deg) scale(0.5)';
         iconElement.style.opacity = '0';
         
@@ -514,11 +715,9 @@
         }, 200);
     }
 
-    // Cambiar cada 2.5 segundos
     setInterval(rotateFoodIcon3D, 2500);
 </script>
 
-{{-- ESTILOS 3D ADICIONALES --}}
 <style>
     #rotatingFoodIcon {
         transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -527,23 +726,14 @@
         backface-visibility: visible;
     }
     
-    /* Animación de los anillos circulares */
     @keyframes spin-slow {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
     
     @keyframes spin-slow-reverse {
-        from {
-            transform: rotate(360deg);
-        }
-        to {
-            transform: rotate(0deg);
-        }
+        from { transform: rotate(360deg); }
+        to { transform: rotate(0deg); }
     }
     
     .animate-spin-slow {
@@ -554,7 +744,6 @@
         animation: spin-slow-reverse 3s linear infinite;
     }
     
-    /* Efecto hover 3D */
     #rotatingFoodIcon:hover {
         transform: rotateY(180deg) scale(1.3) !important;
         filter: drop-shadow(0 0 25px rgba(255,215,0,0.9)) !important;
