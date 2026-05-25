@@ -2,13 +2,13 @@
 
 @section('content')
 
-<div class="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-yellow-50">
+<div class="min-h-screen bg-[#faf8f5]">
 
     {{-- CONTENIDO PRINCIPAL SIN SIDEBAR --}}
     <main class="w-full">
 
         {{-- HEADER CON BOTÓN VOLVER --}}
-        <header class="bg-white/95 backdrop-blur-md border-b-4 border-orange-500 px-8 py-6 shadow-lg sticky top-0 z-50">
+        <header class="bg-white/80 backdrop-blur-sm border-b border-[#e8e4dd] px-8 py-6 sticky top-0 z-50 shadow-sm">
 
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
@@ -16,19 +16,19 @@
                 <div class="flex items-center gap-4">
 
                     <div class="relative w-16 h-16">
-                        <div class="absolute inset-0 rounded-full border-2 border-yellow-400/50 animate-spin-slow"></div>
+                        <div class="absolute inset-0 rounded-full border-2 border-[#d4c5b0] animate-spin-slow"></div>
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-4xl cursor-pointer" id="rotatingFoodIcon" style="filter: drop-shadow(0 0 10px rgba(255,215,0,0.5));">
-                                🍕
+                            <div class="text-4xl cursor-pointer" id="rotatingFoodIcon" style="filter: drop-shadow(0 0 10px rgba(180,160,130,0.3));">
+                                🏢
                             </div>
                         </div>
                     </div>
 
                     <div>
-                        <h1 class="text-3xl font-black bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                        <h1 class="text-3xl font-black text-[#4a3728]">
                             FoodLink
                         </h1>
-                        <p class="text-gray-500 text-sm">
+                        <p class="text-[#a68a6b] text-sm">
                             Gestión de Productos por Negocios
                         </p>
                     </div>
@@ -37,7 +37,7 @@
 
                 {{-- BOTÓN VOLVER AL PANEL DE CONTROL --}}
                 <a href="/admin/dashboard" 
-                   class="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 transition-all duration-300 text-white px-6 py-3 rounded-xl font-bold shadow-lg transform hover:scale-105 flex items-center gap-2 w-fit">
+                   class="bg-[#8b7355] hover:bg-[#6b5340] transition-all duration-300 text-white px-6 py-3 rounded-xl font-medium shadow-sm hover:shadow-md transform hover:scale-105 flex items-center gap-2 w-fit">
 
                     <span class="text-xl">⬅️</span> Volver al Panel de Control
 
@@ -52,37 +52,37 @@
 
             {{-- TÍTULO DE LA SECCIÓN --}}
             <div class="mb-8 text-center">
-                <h2 class="text-4xl font-black text-gray-800 flex items-center justify-center gap-3">
-                    <span>🏪</span> Nuestros Negocios <span>🍽️</span>
+                <h2 class="text-4xl font-black text-[#4a3728] flex items-center justify-center gap-3">
+                    <span>🏢</span> Nuestros Negocios <span>📦</span>
                 </h2>
-                <p class="text-gray-600 mt-2 font-medium">
-                    
+                <p class="text-[#a68a6b] mt-2 font-medium">
+                    Gestión de productos y servicios por negocio
                 </p>
             </div>
 
             {{-- DEFINIR NEGOCIOS CON SUS PRODUCTOS --}}
             @php
-                // Definir los 3 negocios con sus colores e íconos
+                // Definir los 3 negocios con colores minimalistas
                 $negocios = [
                     'Hamburguesas Pro' => [
                         'icon' => '🍔',
-                        'color' => 'from-red-600 to-orange-600',
-                        'bg' => 'bg-red-50',
-                        'border' => 'border-red-400',
+                        'color' => 'from-[#8b7355] to-[#6b5340]',
+                        'bg' => 'bg-[#f5f0ea]',
+                        'border' => 'border-[#e0d6cc]',
                         'productos' => []
                     ],
                     'Pizza House' => [
                         'icon' => '🍕',
-                        'color' => 'from-red-500 to-yellow-500',
-                        'bg' => 'bg-yellow-50',
-                        'border' => 'border-yellow-400',
+                        'color' => 'from-[#7a6348] to-[#5c4935]',
+                        'bg' => 'bg-[#f5f0ea]',
+                        'border' => 'border-[#e0d6cc]',
                         'productos' => []
                     ],
                     'Sushi Roll' => [
                         'icon' => '🍱',
-                        'color' => 'from-orange-500 to-red-500',
-                        'bg' => 'bg-orange-50',
-                        'border' => 'border-orange-400',
+                        'color' => 'from-[#9b7b5c] to-[#7a5c42]',
+                        'bg' => 'bg-[#f5f0ea]',
+                        'border' => 'border-[#e0d6cc]',
                         'productos' => []
                     ],
                 ];
@@ -109,32 +109,26 @@
                 // Si no hay productos en algún negocio, agregar ejemplos
                 if (empty($negocios['Hamburguesas Pro']['productos'])) {
                     $negocios['Hamburguesas Pro']['productos'] = [
-                        (object)['id' => 1, 'name' => 'Hamburguesa Clásica', 'price' => 45, 'is_available' => true],
-                        (object)['id' => 2, 'name' => 'Hamburguesa Doble', 'price' => 65, 'is_available' => true],
-                        (object)['id' => 3, 'name' => 'Papas Fritas', 'price' => 20, 'is_available' => false],
-                        (object)['id' => 4, 'name' => 'Combo Mega', 'price' => 90, 'is_available' => true],
-                        (object)['id' => 5, 'name' => 'Hamburguesa BBQ', 'price' => 55, 'is_available' => true],
-                        (object)['id' => 6, 'name' => 'Aros de Cebolla', 'price' => 25, 'is_available' => false],
+                        (object)['id' => 1, 'name' => 'Producto Ejemplo 1', 'price' => 45, 'is_available' => true],
+                        (object)['id' => 2, 'name' => 'Producto Ejemplo 2', 'price' => 65, 'is_available' => true],
+                        (object)['id' => 3, 'name' => 'Producto Ejemplo 3', 'price' => 20, 'is_available' => false],
+                        (object)['id' => 4, 'name' => 'Producto Ejemplo 4', 'price' => 90, 'is_available' => true],
                     ];
                 }
                 if (empty($negocios['Pizza House']['productos'])) {
                     $negocios['Pizza House']['productos'] = [
-                        (object)['id' => 7, 'name' => 'Pizza Margherita', 'price' => 70, 'is_available' => true],
-                        (object)['id' => 8, 'name' => 'Pizza Pepperoni', 'price' => 85, 'is_available' => true],
-                        (object)['id' => 9, 'name' => 'Pizza Hawaiana', 'price' => 80, 'is_available' => false],
-                        (object)['id' => 10, 'name' => 'Pizza 4 Quesos', 'price' => 90, 'is_available' => true],
-                        (object)['id' => 11, 'name' => 'Pizza Vegetariana', 'price' => 75, 'is_available' => true],
+                        (object)['id' => 5, 'name' => 'Servicio Ejemplo 1', 'price' => 70, 'is_available' => true],
+                        (object)['id' => 6, 'name' => 'Servicio Ejemplo 2', 'price' => 85, 'is_available' => true],
+                        (object)['id' => 7, 'name' => 'Servicio Ejemplo 3', 'price' => 80, 'is_available' => false],
+                        (object)['id' => 8, 'name' => 'Servicio Ejemplo 4', 'price' => 90, 'is_available' => true],
                     ];
                 }
                 if (empty($negocios['Sushi Roll']['productos'])) {
                     $negocios['Sushi Roll']['productos'] = [
-                        (object)['id' => 12, 'name' => 'Sushi Roll California', 'price' => 60, 'is_available' => true],
-                        (object)['id' => 13, 'name' => 'Sushi Roll Philadelphia', 'price' => 75, 'is_available' => true],
-                        (object)['id' => 14, 'name' => 'Sashimi Salmón', 'price' => 80, 'is_available' => false],
-                        (object)['id' => 15, 'name' => 'Maki Spicy Tuna', 'price' => 65, 'is_available' => true],
-                        (object)['id' => 16, 'name' => 'Temaki Especial', 'price' => 45, 'is_available' => true],
-                        (object)['id' => 17, 'name' => 'Sushi Roll Dragon', 'price' => 95, 'is_available' => false],
-                        (object)['id' => 18, 'name' => 'Nigiri Variado', 'price' => 70, 'is_available' => true],
+                        (object)['id' => 9, 'name' => 'Item Ejemplo 1', 'price' => 60, 'is_available' => true],
+                        (object)['id' => 10, 'name' => 'Item Ejemplo 2', 'price' => 75, 'is_available' => true],
+                        (object)['id' => 11, 'name' => 'Item Ejemplo 3', 'price' => 80, 'is_available' => false],
+                        (object)['id' => 12, 'name' => 'Item Ejemplo 4', 'price' => 65, 'is_available' => true],
                     ];
                 }
             @endphp
@@ -151,20 +145,20 @@
                                 {{ $negocio['icon'] }}
                             </div>
                             <div>
-                                <h3 class="text-3xl font-black text-gray-800 flex items-center gap-2">
+                                <h3 class="text-3xl font-black text-[#4a3728] flex items-center gap-2">
                                     {{ $negocioNombre }}
-                                    <span class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">
-                                        🟢 Abierto
+                                    <span class="text-sm bg-[#e8e0d5] text-[#6b5340] px-3 py-1 rounded-full text-xs font-medium">
+                                        🟢 Activo
                                     </span>
                                 </h3>
-                                <p class="text-gray-500 text-sm">
+                                <p class="text-[#a68a6b] text-sm">
                                     {{ count($negocio['productos']) }} producto(s) disponibles
                                 </p>
                             </div>
                         </div>
                         
                         {{-- INDICADOR DESLIZABLE --}}
-                        <div class="flex items-center gap-2 text-gray-500 text-sm">
+                        <div class="flex items-center gap-2 text-[#a68a6b] text-sm">
                             <span class="text-xl">👆</span>
                             <span>Desliza hacia la derecha →</span>
                         </div>
@@ -175,8 +169,8 @@
                         <div class="flex gap-6" style="min-width: min-content;">
                             
                             @foreach($negocio['productos'] as $product)
-                            {{-- CARD DE PRODUCTO --}}
-                            <div class="w-80 flex-shrink-0 bg-white rounded-2xl shadow-xl overflow-hidden border-2 {{ $product->is_available ? 'border-green-400' : 'border-red-400' }} transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                            {{-- CARD DE PRODUCTO MINIMALISTA --}}
+                            <div class="w-80 flex-shrink-0 bg-white rounded-2xl shadow-sm overflow-hidden border {{ $product->is_available ? 'border-[#d4e2d4]' : 'border-[#e8d4d4]' }} transform transition-all duration-300 hover:scale-105 hover:shadow-md">
                                 
                                 {{-- CABECERA DEL PRODUCTO --}}
                                 <div class="bg-gradient-to-r {{ $negocio['color'] }} px-4 py-3">
@@ -184,7 +178,7 @@
                                         <div class="text-4xl">
                                             {{ $negocio['icon'] }}
                                         </div>
-                                        <div class="text-white text-xs font-bold bg-white/20 px-2 py-1 rounded-full">
+                                        <div class="text-white/80 text-xs font-medium bg-white/20 px-2 py-1 rounded-full">
                                             #{{ $product->id }}
                                         </div>
                                     </div>
@@ -193,17 +187,17 @@
                                 {{-- CUERPO --}}
                                 <div class="p-5">
 
-                                    <h3 class="text-xl font-black text-gray-800 mb-2">
+                                    <h3 class="text-xl font-bold text-[#4a3728] mb-2">
                                         {{ $product->name }}
                                     </h3>
 
                                     <div class="mb-4">
-                                        <span class="text-3xl font-black text-red-600">Bs {{ number_format($product->price, 2) }}</span>
-                                        <span class="text-gray-500 text-sm">c/u</span>
+                                        <span class="text-3xl font-bold text-[#8b7355]">Bs {{ number_format($product->price, 2) }}</span>
+                                        <span class="text-[#c4b5a0] text-sm">c/u</span>
                                     </div>
 
                                     {{-- INDICADOR DE ESTADO --}}
-                                    <div class="mb-4 p-2 rounded-xl text-center font-bold text-sm {{ $product->is_available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
+                                    <div class="mb-4 p-2 rounded-xl text-center font-medium text-sm {{ $product->is_available ? 'bg-[#e8f0e8] text-[#5a7a5a]' : 'bg-[#f0e8e8] text-[#b57a7a]' }}">
                                         @if($product->is_available)
                                             ✅ Disponible actualmente
                                         @else
@@ -220,8 +214,8 @@
                                             <input type="hidden" name="is_available" value="1">
                                             
                                             <button type="submit" 
-                                                    class="w-full px-3 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2
-                                                    {{ $product->is_available ? 'bg-green-500 text-white shadow-lg' : 'bg-gray-200 text-gray-500 hover:bg-green-400 hover:text-white' }}">
+                                                    class="w-full px-3 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2
+                                                    {{ $product->is_available ? 'bg-[#7a9a7a] text-white shadow-sm' : 'bg-[#f0ece8] text-[#a68a6b] hover:bg-[#7a9a7a] hover:text-white' }}">
                                                 <span class="text-lg">✅</span> Disponible
                                             </button>
                                         </form>
@@ -232,8 +226,8 @@
                                             <input type="hidden" name="is_available" value="0">
                                             
                                             <button type="submit" 
-                                                    class="w-full px-3 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2
-                                                    {{ !$product->is_available ? 'bg-red-500 text-white shadow-lg' : 'bg-gray-200 text-gray-500 hover:bg-red-400 hover:text-white' }}">
+                                                    class="w-full px-3 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2
+                                                    {{ !$product->is_available ? 'bg-[#b57a7a] text-white shadow-sm' : 'bg-[#f0ece8] text-[#a68a6b] hover:bg-[#b57a7a] hover:text-white' }}">
                                                 <span class="text-lg">❌</span> Agotado
                                             </button>
                                         </form>
@@ -243,8 +237,8 @@
                                 </div>
 
                                 {{-- PIE --}}
-                                <div class="bg-{{ str_replace('from-', '', explode(' ', $negocio['color'])[1]) }}/10 px-5 py-3 border-t border-gray-100">
-                                    <div class="flex justify-between text-xs text-gray-500">
+                                <div class="bg-[#faf8f5] px-5 py-3 border-t border-[#f0ece8]">
+                                    <div class="flex justify-between text-xs text-[#c4b5a0]">
                                         <span>🕒 Cambiar estado</span>
                                         <span>{{ $negocio['icon'] }} {{ $negocioNombre }}</span>
                                     </div>
@@ -258,10 +252,10 @@
 
                     {{-- BOTONES DE NAVEGACIÓN DEL CARRUSEL --}}
                     <div class="flex justify-end gap-2 mt-3">
-                        <button onclick="scrollCarousel(this, 'left')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-full transition-all duration-300">
+                        <button onclick="scrollCarousel(this, 'left')" class="bg-[#f0ece8] hover:bg-[#e8e0d5] text-[#a68a6b] p-2 rounded-full transition-all duration-300">
                             <span class="text-xl">◀</span>
                         </button>
-                        <button onclick="scrollCarousel(this, 'right')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-2 rounded-full transition-all duration-300">
+                        <button onclick="scrollCarousel(this, 'right')" class="bg-[#f0ece8] hover:bg-[#e8e0d5] text-[#a68a6b] p-2 rounded-full transition-all duration-300">
                             <span class="text-xl">▶</span>
                         </button>
                     </div>
@@ -271,28 +265,28 @@
             @endforeach
 
             {{-- CONTADORES Y ESTADÍSTICAS GENERALES --}}
-            <div class="mt-8 bg-white rounded-2xl p-6 shadow-xl border-2 border-orange-200">
+            <div class="mt-8 bg-white rounded-2xl p-6 shadow-sm border border-[#f0ece8]">
 
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 
                     <div class="text-center">
-                        <div class="text-4xl font-black text-orange-600">{{ $products->count() }}</div>
-                        <div class="text-gray-600 font-semibold">📦 Total Productos</div>
+                        <div class="text-4xl font-bold text-[#4a3728]">{{ $products->count() }}</div>
+                        <div class="text-[#a68a6b] font-medium">📦 Total Productos</div>
                     </div>
 
                     <div class="text-center">
-                        <div class="text-4xl font-black text-green-600">{{ $products->where('is_available', true)->count() }}</div>
-                        <div class="text-gray-600 font-semibold">✅ Disponibles</div>
+                        <div class="text-4xl font-bold text-[#7a9a7a]">{{ $products->where('is_available', true)->count() }}</div>
+                        <div class="text-[#a68a6b] font-medium">✅ Disponibles</div>
                     </div>
 
                     <div class="text-center">
-                        <div class="text-4xl font-black text-red-600">{{ $products->where('is_available', false)->count() }}</div>
-                        <div class="text-gray-600 font-semibold">❌ Agotados</div>
+                        <div class="text-4xl font-bold text-[#b57a7a]">{{ $products->where('is_available', false)->count() }}</div>
+                        <div class="text-[#a68a6b] font-medium">❌ Agotados</div>
                     </div>
 
                     <div class="text-center">
-                        <div class="text-4xl font-black text-purple-600">{{ count($negocios) }}</div>
-                        <div class="text-gray-600 font-semibold">🏪 Negocios</div>
+                        <div class="text-4xl font-bold text-[#4a3728]">{{ count($negocios) }}</div>
+                        <div class="text-[#a68a6b] font-medium">🏢 Negocios</div>
                     </div>
 
                 </div>
@@ -305,9 +299,8 @@
 
 </div>
 
-{{-- SCRIPT PARA CARRUSEL Y EFECTO 3D --}}
+{{-- SCRIPT PARA CARRUSEL Y EFECTO --}}
 <script>
-    // Función para desplazar el carrusel
     function scrollCarousel(button, direction) {
         const carousel = button.closest('.mb-12').querySelector('.overflow-x-auto');
         const scrollAmount = 350;
@@ -319,40 +312,28 @@
         }
     }
 
-    // Efecto 3D para el logo
-    const foodItems = ['🍔', '🍕', '🍱'];
+    const items = ['🏢', '📦', '⚙️'];
     let currentIndex = 0;
     const iconElement = document.getElementById('rotatingFoodIcon');
 
-    function rotateFoodIcon3D() {
-        currentIndex = (currentIndex + 1) % foodItems.length;
+    function rotateIcon3D() {
+        currentIndex = (currentIndex + 1) % items.length;
         
         iconElement.style.transform = 'rotateY(180deg) scale(0.5)';
         iconElement.style.opacity = '0';
         
         setTimeout(() => {
-            let displayText = foodItems[currentIndex];
-            if (currentIndex === 0) {
-                iconElement.title = 'Hamburguesas Pro 🍔';
-            } else if (currentIndex === 1) {
-                iconElement.title = 'Pizza House 🍕';
-            } else {
-                iconElement.title = 'Sushi Roll 🍱';
-            }
-            
-            iconElement.textContent = displayText;
+            iconElement.textContent = items[currentIndex];
             iconElement.style.transform = 'rotateY(360deg) scale(1.2)';
             iconElement.style.opacity = '1';
-            iconElement.style.filter = 'drop-shadow(0 0 20px rgba(255,215,0,0.8))';
             
             setTimeout(() => {
                 iconElement.style.transform = 'rotateY(0deg) scale(1)';
-                iconElement.style.filter = 'drop-shadow(0 0 15px rgba(255,215,0,0.5))';
             }, 300);
         }, 200);
     }
 
-    setInterval(rotateFoodIcon3D, 2500);
+    setInterval(rotateIcon3D, 2500);
 </script>
 
 <style>
@@ -374,27 +355,25 @@
     
     #rotatingFoodIcon:hover {
         transform: rotateY(180deg) scale(1.3) !important;
-        filter: drop-shadow(0 0 25px rgba(255,215,0,0.9)) !important;
         cursor: pointer;
     }
 
-    /* Scrollbar personalizado */
     .overflow-x-auto::-webkit-scrollbar {
         height: 8px;
     }
 
     .overflow-x-auto::-webkit-scrollbar-track {
-        background: #f1f1f1;
+        background: #f0ece8;
         border-radius: 10px;
     }
 
     .overflow-x-auto::-webkit-scrollbar-thumb {
-        background: #f97316;
+        background: #d4c5b0;
         border-radius: 10px;
     }
 
     .overflow-x-auto::-webkit-scrollbar-thumb:hover {
-        background: #ea580c;
+        background: #c4b5a0;
     }
 </style>
 
