@@ -4,49 +4,84 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant;
+use Illuminate\View\View;
 
 class TenantController extends Controller
 {
-    /**
-     * Mostrar tienda del negocio
-     */
-    public function show(string $slug)
+    /*
+    |--------------------------------------------------------------------------
+    | MOSTRAR TIENDA PÚBLICA DEL NEGOCIO
+    |--------------------------------------------------------------------------
+    | Ruta:
+    | /{slug}
+    |
+    | Ejemplos:
+    | /pizza-imperial
+    | /mundo-tecnologia
+    |--------------------------------------------------------------------------
+    */
+
+    public function show(string $slug): View
     {
         /*
         |--------------------------------------------------------------------------
-        | Buscar tenant por slug
+        | BUSCAR NEGOCIO POR SLUG
+        |--------------------------------------------------------------------------
+        | Cargamos el negocio y validamos que exista.
         |--------------------------------------------------------------------------
         */
 
-        $tenant = Tenant::where('slug', $slug)
-            ->with([
-                'categories',
-                'products' => function ($query) {
-                    $query->where('is_available', true)
-                        ->latest();
-                }
-            ])
+        $tenant = Tenant::query()
+            ->where('slug', $slug)
             ->firstOrFail();
 
         /*
         |--------------------------------------------------------------------------
-        | Categorías del negocio
+        | OBTENER CATEGORÍAS ACTIVAS DEL NEGOCIO
+        |--------------------------------------------------------------------------
+        | Cada negocio solo debe mostrar sus propias categorías.
         |--------------------------------------------------------------------------
         */
 
-        $categories = $tenant->categories;
+        $categories = $tenant->categories()
+            ->where('is_active', true)
+            ->orderBy('name')
+            ->get();
 
         /*
         |--------------------------------------------------------------------------
-        | Productos disponibles
+        | OBTENER PRODUCTOS DISPONIBLES DEL NEGOCIO
+        |--------------------------------------------------------------------------
+        | Cada negocio solo debe mostrar sus propios productos.
         |--------------------------------------------------------------------------
         */
 
-        $products = $tenant->products;
+        $products = $tenant->products()
+            ->with('category')
+            ->where('is_available', true)
+            ->orderByDesc('featured')
+            ->latest()
+            ->get();
 
         /*
         |--------------------------------------------------------------------------
-        | Retornar vista
+        | PRODUCTOS DESTACADOS
+        |--------------------------------------------------------------------------
+        | Esto sirve para mostrar una sección premium en la tienda.
+        |--------------------------------------------------------------------------
+        */
+
+        $featuredProducts = $tenant->products()
+            ->with('category')
+            ->where('is_available', true)
+            ->where('featured', true)
+            ->latest()
+            ->take(6)
+            ->get();
+
+        /*
+        |--------------------------------------------------------------------------
+        | RETORNAR VISTA
         |--------------------------------------------------------------------------
         */
 
@@ -54,6 +89,7 @@ class TenantController extends Controller
             'tenant' => $tenant,
             'categories' => $categories,
             'products' => $products,
+            'featuredProducts' => $featuredProducts,
         ]);
     }
 }
